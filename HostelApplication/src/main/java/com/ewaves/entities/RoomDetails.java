@@ -28,7 +28,10 @@ public class RoomDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "roomId", unique = true, nullable = false)
 	private Integer roomId;
-	private Integer roomNumber;
+	private String roomType;
+	private String tv;
+	private String hotWaterAvailable;
+
 	// roomType means sharing details
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomDetails", orphanRemoval = true)
 	private List<SharingDetails> sharingType;
@@ -51,12 +54,28 @@ public class RoomDetails implements Serializable {
 		this.roomId = roomId;
 	}
 
-	public Integer getRoomNumber() {
-		return roomNumber;
+	public String getRoomType() {
+		return roomType;
 	}
 
-	public void setRoomNumber(Integer roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+
+	public String getTv() {
+		return tv;
+	}
+
+	public void setTv(String tv) {
+		this.tv = tv;
+	}
+
+	public String getHotWaterAvailable() {
+		return hotWaterAvailable;
+	}
+
+	public void setHotWaterAvailable(String hotWaterAvailable) {
+		this.hotWaterAvailable = hotWaterAvailable;
 	}
 
 	public List<SharingDetails> getSharingType() {
