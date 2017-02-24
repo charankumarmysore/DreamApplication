@@ -2,7 +2,6 @@ package com.ewaves.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Convert;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.ewaves.converter.LocalDateConverter;
 import com.ewaves.converter.LocalDateDeserializer;
@@ -28,11 +26,9 @@ public class SharingDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String sharingType;
+	private String noOfPersonAvailability;
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private RoomDetails roomDetails;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sharingDetails", orphanRemoval = true)
-	private List<RoomAvailability> roomAvailability;
 
 	private LocalDateTime insertedOn;
 	private LocalDateTime UpdatedOn;
@@ -61,12 +57,12 @@ public class SharingDetails implements Serializable {
 		this.roomDetails = roomDetails;
 	}
 
-	public List<RoomAvailability> getRoomAvailability() {
-		return roomAvailability;
+	public String getNoOfPersonAvailability() {
+		return noOfPersonAvailability;
 	}
 
-	public void setRoomAvailability(List<RoomAvailability> roomAvailability) {
-		this.roomAvailability = roomAvailability;
+	public void setNoOfPersonAvailability(String noOfPersonAvailability) {
+		this.noOfPersonAvailability = noOfPersonAvailability;
 	}
 
 	@Convert(converter = LocalDateConverter.class)

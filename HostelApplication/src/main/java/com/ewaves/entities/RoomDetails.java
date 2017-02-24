@@ -35,14 +35,12 @@ public class RoomDetails implements Serializable {
 	// roomType means sharing details
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomDetails", orphanRemoval = true)
 	private List<SharingDetails> sharingType;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomDetails", orphanRemoval = true)
-	private List<RoomAvailability> roomAvailability;
+
 	private LocalDate insertedOn;
 	private LocalDate UpdatedOn;
 
 	public RoomDetails() {
 		sharingType = new ArrayList<SharingDetails>();
-		roomAvailability = new ArrayList<RoomAvailability>();
 
 	}
 
@@ -86,14 +84,6 @@ public class RoomDetails implements Serializable {
 		this.sharingType = sharingType;
 	}
 
-	public List<RoomAvailability> getRoomAvailability() {
-		return roomAvailability;
-	}
-
-	public void setRoomAvailability(List<RoomAvailability> roomAvailability) {
-		this.roomAvailability = roomAvailability;
-	}
-
 	@Convert(converter = LocalDateConverter.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
@@ -114,14 +104,6 @@ public class RoomDetails implements Serializable {
 
 	public void setUpdatedOn(LocalDate updatedOn) {
 		UpdatedOn = LocalDate.now();
-	}
-
-	public List<RoomAvailability> getRoomDetailsList() {
-		return roomAvailability;
-	}
-
-	public void setRoomDetailsList(List<RoomAvailability> roomAvailability) {
-		this.roomAvailability = roomAvailability;
 	}
 
 }
