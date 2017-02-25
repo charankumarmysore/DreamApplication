@@ -15,6 +15,5 @@ public class HostelDeails {
 	private String secondaryPhoneNumber;
 	private String secondaryEmail;
 	private String secondaryAddress;
-	 
 
 }
