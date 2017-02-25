@@ -28,11 +28,11 @@ public class RoomDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "roomId", unique = true, nullable = false)
 	private Integer roomId;
+	// roomType means AC/Non AC
 	private String roomType;
 	private String tv;
 	private String hotWaterAvailable;
 
-	// roomType means sharing details
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomDetails", orphanRemoval = true)
 	private List<SharingDetails> sharingType;
 
