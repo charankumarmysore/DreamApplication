@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class HostelFaculties implements Serializable {
 
@@ -22,8 +24,9 @@ public class HostelFaculties implements Serializable {
 	private boolean nonVegetarian;
 	private boolean washingMachine;
 	private boolean hotWater;
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
-	private HostelDetails hostelDetails;
+	private HostelDetails hostelDeails;
 
 	public Integer getId() {
 		return id;
@@ -81,19 +84,14 @@ public class HostelFaculties implements Serializable {
 		this.hotWater = hotWater;
 	}
 
-	public HostelDetails getHostelDetails() {
-		return hostelDetails;
+	public HostelDetails getHostelDeails() {
+		return hostelDeails;
 	}
 
-	public void setHostelDetails(HostelDetails hostelDetails) {
-		this.hostelDetails = hostelDetails;
+	public void setHostelDeails(HostelDetails hostelDeails) {
+		this.hostelDeails = hostelDeails;
 	}
 
-	@Override
-	public String toString() {
-		return "HostelFaculties [id=" + id + ", tv=" + tv + ", wifi=" + wifi + ", ac=" + ac + ", nonVegetarian="
-				+ nonVegetarian + ", washingMachine=" + washingMachine + ", hotWater=" + hotWater + ", hostelDetails="
-				+ hostelDetails + "]";
-	}
+	
 
 }
