@@ -21,7 +21,7 @@ public class HostelService {
 		logger.info("In Hostel Service save methos is executin ");
 		logger.info("" + hostelDeails);
 
-		HostelDetails details = hostelRepossitory.findByEmailId(hostelDeails.getEmailId());
+		HostelDetails details = hostelRepossitory.findOneByEmail(hostelDeails.getEmailId());
 
 		if (details == null) {
 			return HttpStatusCode.ALREADY_EMAIL_EXISTS.getResponseVO("FAILURE");
