@@ -1,5 +1,7 @@
 package com.ewaves.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +12,14 @@ import com.ewaves.util.HttpStatusCode;
 
 @Service
 public class HostelService {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private HostelRepossitory hostelRepossitory;
 
 	public ResponseVO save(HostelDetails hostelDeails) {
+		logger.info("In Hostel Service save methos is executin ");
+		logger.info("" + hostelDeails);
 
 		HostelDetails details = hostelRepossitory.findByEmailId(hostelDeails.getEmailId());
 
