@@ -10,9 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class HostelDeails implements Serializable {
+public class HostelDetails implements Serializable {
 
 	private static final long serialVersionUID = 7749423133637138708L;
 	@Id
@@ -25,8 +26,8 @@ public class HostelDeails implements Serializable {
 	private String emailId;
 	private String address1;
 	private String address2;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDeails", orphanRemoval = true)
-	private List<HostelFaculties> facultiesList;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDeails", orphanRemoval = true)
+	private HostelFaculties facultiesList;
 
 	public Integer getHostelId() {
 		return hostelId;
@@ -92,11 +93,11 @@ public class HostelDeails implements Serializable {
 		this.address2 = address2;
 	}
 
-	public List<HostelFaculties> getFacultiesList() {
+	public HostelFaculties getFacultiesList() {
 		return facultiesList;
 	}
 
-	public void setFacultiesList(List<HostelFaculties> facultiesList) {
+	public void setFacultiesList(HostelFaculties facultiesList) {
 		this.facultiesList = facultiesList;
 	}
 

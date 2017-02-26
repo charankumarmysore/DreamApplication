@@ -3,7 +3,6 @@ package com.ewaves.entities;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +23,7 @@ public class HostelFaculties implements Serializable {
 	private boolean washingMachine;
 	private boolean hotWater;
 	@ManyToOne(cascade = CascadeType.MERGE)
-	private HostelDeails hostelDeails;
+	private HostelDetails hostelDetails;
 
 	public Integer getId() {
 		return id;
@@ -82,19 +81,19 @@ public class HostelFaculties implements Serializable {
 		this.hotWater = hotWater;
 	}
 
-	public HostelDeails getHostelDeails() {
-		return hostelDeails;
+	public HostelDetails getHostelDetails() {
+		return hostelDetails;
 	}
 
-	public void setHostelDeails(HostelDeails hostelDeails) {
-		this.hostelDeails = hostelDeails;
+	public void setHostelDetails(HostelDetails hostelDetails) {
+		this.hostelDetails = hostelDetails;
 	}
 
 	@Override
 	public String toString() {
 		return "HostelFaculties [id=" + id + ", tv=" + tv + ", wifi=" + wifi + ", ac=" + ac + ", nonVegetarian="
-				+ nonVegetarian + ", washingMachine=" + washingMachine + ", hotWater=" + hotWater + ", hostelDeails="
-				+ hostelDeails + "]";
+				+ nonVegetarian + ", washingMachine=" + washingMachine + ", hotWater=" + hotWater + ", hostelDetails="
+				+ hostelDetails + "]";
 	}
 
 }
