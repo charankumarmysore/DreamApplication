@@ -12,7 +12,7 @@ import com.ewaves.util.HttpStatusCode;
 
 @Service
 public class HostelService {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(HostelService.class);
 
 	@Autowired
 	private HostelRepossitory hostelRepossitory;
