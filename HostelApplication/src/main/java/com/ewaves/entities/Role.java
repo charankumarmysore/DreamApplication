@@ -1,7 +1,5 @@
 package com.ewaves.entities;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;

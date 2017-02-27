@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ewaves.domain.ResponseVO;
-import com.ewaves.entities.LoginDetails;
 import com.ewaves.entities.StudentRequest;
 import com.ewaves.service.UserService;
 
