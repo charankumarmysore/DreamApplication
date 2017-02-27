@@ -18,7 +18,7 @@ public enum HttpStatusCode {
     ALREADY_USERNAME_EXISTS(208, "Already Registered with same UserName"),
     ALREADY_PHONENUM_EXISTS(208, "Already Registered with same Phone Number"),
     ALREADY_EMAIL_EXISTS(208, "Already Registered with same Email"),
-    CLAIM_ALREADY_EXISTS(208, "Claim already Exists"),
+    ROLE_ALREADY_EXISTS(208, "Claim already Exists"),
     CLAIM_COUNT_EXCEEDED(208, "Claim Count Exceeded"),
     CLAIM_REVERTED_FAILURE(208, "Claim Revert Failure"),
     CLAIM_REVERTED_SUCCESSFULLY(209, "Claim Reverted Successfully"),

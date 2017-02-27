@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 
 import com.ewaves.entities.Role;
 import com.ewaves.entities.Student;
+import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.LoginDetails;
 import com.ewaves.repository.RoleRepository;
 import com.ewaves.repository.StudentRepository;
 import com.ewaves.repository.UserRepository;
+import com.ewaves.util.HttpStatusCode;
 
 @Service
 public class StudentService {
@@ -19,12 +21,12 @@ public class StudentService {
 	@Autowired
 	private StudentRepository studentRepository;
 
-	public void add(Student studentVO) {
+	public ResponseVO studentRegistration(Student studentVO) {
 
 		LoginDetails userByName = userRepository.findByUsername(studentVO.getUser().getUsername());
 
 		if (userByName != null) {
-			throw new RuntimeException("Användarnamn finns redan.");
+			return HttpStatusCode.ALREADY_USERNAME_EXISTS.getResponseVO("FAILURE");
 		}
 
 		LoginDetails user = studentVO.getUser();
@@ -39,6 +41,8 @@ public class StudentService {
 		}
 
 		studentRepository.save(studentVO);
+
+		return HttpStatusCode.CREATED.getResponseVO("SUCCESS");
 
 	}
 

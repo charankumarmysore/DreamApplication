@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.Student;
 import com.ewaves.service.StudentService;
 
@@ -15,9 +16,10 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public void add(@RequestBody Student employee) {
-		studentService.add(employee);
+	@RequestMapping(value = "/studentregistration", method = RequestMethod.POST)
+	public ResponseVO studentRegistration(@RequestBody Student employee) {
+		ResponseVO responseVO=	studentService.studentRegistration(employee);
+		return responseVO;
 	}
 
 }
