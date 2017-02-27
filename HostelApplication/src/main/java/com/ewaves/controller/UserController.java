@@ -22,9 +22,9 @@ public class UserController {
 	public @ResponseBody ResponseVO userRequest(@RequestBody StudentRequest userRequest) {
 		System.out.println("In usercontroller : \n " + userRequest.toString());
 
-		ResponseVO s = userService.addUserRequest(userRequest);
+		ResponseVO responseVO = userService.addUserRequest(userRequest);
 
-		return s;
+		return responseVO;
 
 	}
 }
