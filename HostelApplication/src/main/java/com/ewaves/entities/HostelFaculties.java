@@ -92,6 +92,4 @@ public class HostelFaculties implements Serializable {
 		this.hostelDeails = hostelDeails;
 	}
 
-	
-
 }

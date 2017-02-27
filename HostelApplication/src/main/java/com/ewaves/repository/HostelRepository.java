@@ -10,9 +10,9 @@ import com.ewaves.entities.HostelDetails;
 
 @Repository("hostelRepossitory")
 @Transactional
-public interface HostelRepossitory extends CrudRepository<HostelDetails, Long>, JpaRepository<HostelDetails, Long> {
+public interface HostelRepository extends CrudRepository<HostelDetails, Long>, JpaRepository<HostelDetails, Long> {
 
-	HostelDetails findOneByEmail(String emailId);
+	
 	
 	
 	

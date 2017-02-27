@@ -15,3 +15,34 @@
       "hotWater":false
    }
 }
+
+==============================================
+http://localhost:9002/role/addRole
+{
+	"name":"user",
+	"displayName":"user_student"
+	
+	
+}
+=======================================
+http://localhost:9002/student/
+
+{  
+   "firstName":"cc",
+   "lastName":"cc",
+   "phone":"cc",
+   "email":"cc",
+   "address":"cc",
+   "user":{	  
+      "username":"cc",
+      "password":"cc",
+      "role":{
+      	"id":1,
+         "name":"admin",
+         "displayName":"admin"
+      }
+   }
+}
+==============================================
+
+

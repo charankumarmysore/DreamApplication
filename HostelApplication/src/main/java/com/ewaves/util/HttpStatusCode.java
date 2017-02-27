@@ -15,6 +15,8 @@ public enum HttpStatusCode {
     MULTI_STATUS(207, "Multi-Status (WebDAV; RFC 4918"),
     ALREADY_REPORTED(208, "Already Reported (WebDAV; RFC 5842)"),
     IM_USED(226, "IM Used (RFC 3229)"),
+    ALREADY_USERNAME_EXISTS(208, "Already Registered with same UserName"),
+    ALREADY_PHONENUM_EXISTS(208, "Already Registered with same Phone Number"),
     ALREADY_EMAIL_EXISTS(208, "Already Registered with same Email"),
     CLAIM_ALREADY_EXISTS(208, "Claim already Exists"),
     CLAIM_COUNT_EXCEEDED(208, "Claim Count Exceeded"),

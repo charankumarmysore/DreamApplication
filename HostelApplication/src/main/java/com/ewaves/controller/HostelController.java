@@ -18,7 +18,7 @@ public class HostelController {
 	@Autowired
 	private HostelService hostelService; 
 
-	@RequestMapping(value = "/addHostel", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/addHostel", method = RequestMethod.POST)
 	public @ResponseBody ResponseVO addHostel(@RequestBody HostelDetails hostelDeails) {
 		System.out.println("In usercontroller : \n " + hostelDeails.toString());
 
@@ -26,6 +26,6 @@ public class HostelController {
 
 		return responseVO;
 
-	}
+	}*/
 
 }

@@ -7,19 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.HostelDetails;
-import com.ewaves.repository.HostelRepossitory;
+import com.ewaves.repository.HostelRepository;
 import com.ewaves.util.HttpStatusCode;
 
 @Service
 public class HostelService {
-	private final Logger logger = LoggerFactory.getLogger(HostelService.class);
 
 	@Autowired
-	private HostelRepossitory hostelRepossitory;
+	private HostelRepository hostelRepossitory;
 
-	public ResponseVO save(HostelDetails hostelDeails) {
-		logger.info("In Hostel Service save methos is executin ");
-		logger.info("" + hostelDeails);
+	/*public ResponseVO save(HostelDetails hostelDeails) {
 
 		HostelDetails details = hostelRepossitory.findOneByEmail(hostelDeails.getEmailId());
 
@@ -29,6 +26,6 @@ public class HostelService {
 		hostelRepossitory.save(hostelDeails);
 
 		return HttpStatusCode.CREATED.getResponseVO("SUCCESS");
-	}
+	}*/
 
 }
