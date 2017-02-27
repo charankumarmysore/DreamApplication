@@ -13,6 +13,7 @@ public class ResponseVO {
 	private int statusCode;
 	private String statusDesc;
 	private List<Object> responseObject;
+	private Object responseObjects;
 
 	public String getStatus() {
 		return status;
@@ -44,6 +45,14 @@ public class ResponseVO {
 
 	public void setResponseObject(List<Object> responseObject) {
 		this.responseObject = responseObject;
+	}
+
+	public Object getResponseObjects() {
+		return responseObjects;
+	}
+
+	public void setResponseObjects(Object responseObjects) {
+		this.responseObjects = responseObjects;
 	}
 
 }

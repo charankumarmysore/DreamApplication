@@ -37,7 +37,6 @@ public class LoginDetails implements java.io.Serializable {
 	private Student student;
 	private String username;
 	private String password;
-	private String status;
 	private Date insertedOn;
 
 	private Date modifiedOn;
@@ -92,15 +91,6 @@ public class LoginDetails implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Column(name = "status", length = 8)
-	public String getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
