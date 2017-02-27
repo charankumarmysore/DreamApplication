@@ -1,15 +1,14 @@
 package com.ewaves.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.ewaves.entities.Role;
 
 @Repository
-public interface RoleRepository extends CrudRepository<Role, Long>, JpaRepository<Role, Long> {
-	@Query
+public interface RoleRepository extends PagingAndSortingRepository<Role, Long>, JpaSpecificationExecutor<Role> {
+
 	Role findByName(String name);
 
 }

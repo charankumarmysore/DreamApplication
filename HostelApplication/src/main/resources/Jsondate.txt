@@ -18,23 +18,25 @@
 
 ==============================================
 http://localhost:9002/role/addRole
+
 {
-	"name":"user",
-	"displayName":"user_student"
+	"name":"admin",
+	"displayName":"admin"
 	
 	
 }
-=======================================
-http://localhost:9002/student/studentregistration
 
+==============================================
+
+http://localhost:9002/student/studentregistration
 {  
    "firstName":"cc",
    "lastName":"cc",
-   "phone":"cc",
-   "email":"cc",
+   "phone":"cc1",
+   "email":"cc1",
    "address":"cc",
    "user":{	  
-      "username":"cc",
+      "username":"cc1",
       "password":"cc",
       "role":{
       	"id":1,

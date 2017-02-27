@@ -23,6 +23,15 @@ public class StudentService {
 
 	public ResponseVO studentRegistration(Student studentVO) {
 
+		Student dbPhoneNumber = studentRepository.findByphone(studentVO.getPhone());
+		if (dbPhoneNumber != null) {
+			return HttpStatusCode.ALREADY_PHONENUM_EXISTS.getResponseVO("FAILURE");
+		}
+
+		Student dbEmail = studentRepository.findByEmail(studentVO.getEmail());
+		if (dbEmail != null) {
+			return HttpStatusCode.ALREADY_EMAIL_EXISTS.getResponseVO("FAILURE");
+		}
 		LoginDetails userByName = userRepository.findByUsername(studentVO.getUser().getUsername());
 
 		if (userByName != null) {

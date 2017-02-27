@@ -16,10 +16,14 @@ public class HostelService {
 
 	public ResponseVO hostelRequest(HostelDetails hostelDeails) {
 
-		HostelDetails details = hostelRepossitory.findByEmail(hostelDeails.getEmailId());
+		HostelDetails dbEmail = hostelRepossitory.findByEmail(hostelDeails.getEmailId());
 
-		if (details == null) {
+		if (dbEmail != null) {
 			return HttpStatusCode.ALREADY_EMAIL_EXISTS.getResponseVO("FAILURE");
+		}
+		HostelDetails dbphoneNumber = hostelRepossitory.findByPhone(hostelDeails.getPhoneNumber());
+		if (dbphoneNumber != null) {
+			return HttpStatusCode.ALREADY_PHONENUM_EXISTS.getResponseVO("FAILURE");
 		}
 		hostelRepossitory.save(hostelDeails);
 
