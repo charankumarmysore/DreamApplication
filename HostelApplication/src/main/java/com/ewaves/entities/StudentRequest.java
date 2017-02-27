@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
-public class UserRequest implements Serializable {
+public class StudentRequest implements Serializable {
 
 	private static final long serialVersionUID = 3536384242164351894L;
 	@Id

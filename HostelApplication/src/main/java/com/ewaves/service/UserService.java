@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ewaves.domain.ResponseVO;
-import com.ewaves.entities.UserRequest;
+import com.ewaves.entities.StudentRequest;
 import com.ewaves.repository.UserRequestRepository;
 import com.ewaves.util.HttpStatusCode;
 
@@ -16,9 +16,9 @@ public class UserService {
 	@Autowired
 	private UserRequestRepository userRequestRepository;
 
-	public ResponseVO addUserRequest(UserRequest userRequest) {
+	public ResponseVO addUserRequest(StudentRequest userRequest) {
 		userRequest.setInsertedOn(LocalDateTime.now());
-		UserRequest dbUserRequest = userRequestRepository.save(userRequest);
+		StudentRequest dbUserRequest = userRequestRepository.save(userRequest);
 
 		if (dbUserRequest == null) {
 			return HttpStatusCode.NON_AUTHORITATIVE_INFORMATION.getResponseVO("FAILURE");

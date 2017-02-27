@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.LoginDetails;
-import com.ewaves.entities.UserRequest;
+import com.ewaves.entities.StudentRequest;
 import com.ewaves.service.UserService;
 
 @RestController
@@ -20,7 +20,7 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(value = "/userRequest", method = RequestMethod.POST)
-	public @ResponseBody ResponseVO userRequest(@RequestBody UserRequest userRequest) {
+	public @ResponseBody ResponseVO userRequest(@RequestBody StudentRequest userRequest) {
 		System.out.println("In usercontroller : \n " + userRequest.toString());
 
 		ResponseVO s = userService.addUserRequest(userRequest);
