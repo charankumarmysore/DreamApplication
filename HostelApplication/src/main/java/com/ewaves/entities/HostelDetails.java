@@ -25,6 +25,7 @@ public class HostelDetails implements Serializable {
 	private String address2;
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDeails", orphanRemoval = true)
 	private HostelFaculties facultiesList;
+	private boolean isEnable;
 
 	public Integer getHostelId() {
 		return hostelId;
@@ -96,6 +97,14 @@ public class HostelDetails implements Serializable {
 
 	public void setFacultiesList(HostelFaculties facultiesList) {
 		this.facultiesList = facultiesList;
+	}
+
+	public boolean getIsEnable() {
+		return isEnable;
+	}
+
+	public void setIsEnable(boolean isEnable) {
+		this.isEnable = isEnable;
 	}
 
 	@Override

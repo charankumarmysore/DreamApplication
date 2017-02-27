@@ -1,7 +1,5 @@
 package com.ewaves.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +14,9 @@ public class HostelService {
 	@Autowired
 	private HostelRepository hostelRepossitory;
 
-	/*public ResponseVO save(HostelDetails hostelDeails) {
+	public ResponseVO hostelRequest(HostelDetails hostelDeails) {
 
-		HostelDetails details = hostelRepossitory.findOneByEmail(hostelDeails.getEmailId());
+		HostelDetails details = hostelRepossitory.findByEmail(hostelDeails.getEmailId());
 
 		if (details == null) {
 			return HttpStatusCode.ALREADY_EMAIL_EXISTS.getResponseVO("FAILURE");
@@ -26,6 +24,7 @@ public class HostelService {
 		hostelRepossitory.save(hostelDeails);
 
 		return HttpStatusCode.CREATED.getResponseVO("SUCCESS");
-	}*/
+
+	}
 
 }

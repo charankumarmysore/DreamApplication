@@ -14,18 +14,18 @@ import com.ewaves.service.HostelService;
 @RestController
 @RequestMapping(value = "/hostel")
 public class HostelController {
-	
-	@Autowired
-	private HostelService hostelService; 
 
-	/*@RequestMapping(value = "/addHostel", method = RequestMethod.POST)
-	public @ResponseBody ResponseVO addHostel(@RequestBody HostelDetails hostelDeails) {
+	@Autowired
+	private HostelService hostelService;
+
+	@RequestMapping(value = "/hostelrequest", method = RequestMethod.POST)
+	public @ResponseBody ResponseVO hostelRequest(@RequestBody HostelDetails hostelDeails) {
 		System.out.println("In usercontroller : \n " + hostelDeails.toString());
 
-		 ResponseVO responseVO = hostelService.save(hostelDeails);
+		ResponseVO responseVO = hostelService.hostelRequest(hostelDeails);
 
 		return responseVO;
 
-	}*/
+	}
 
 }

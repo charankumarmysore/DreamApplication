@@ -25,7 +25,7 @@ http://localhost:9002/role/addRole
 	
 }
 =======================================
-http://localhost:9002/student/
+http://localhost:9002/student/studentregistration
 
 {  
    "firstName":"cc",
