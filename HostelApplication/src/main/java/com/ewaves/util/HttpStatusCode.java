@@ -28,7 +28,8 @@ public enum HttpStatusCode {
 	
 	BAD_REQUEST(400, "Bad Request"),
 	UNAUTHORIZED(401, "Unauthorized"),
-	BAD_GATEWAY(502, "Bad Gateway");
+	BAD_GATEWAY(502, "Bad Gateway"), TOKEN_INVALID (497,"Token is invalid"),
+    TOKEN_EXPIRED (498,"Token is Expired");
 
 	private int code;
 	private String desc;

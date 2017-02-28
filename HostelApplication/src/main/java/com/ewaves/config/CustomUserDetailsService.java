@@ -1,20 +1,25 @@
 package com.ewaves.config;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.ewaves.entities.LoginDetails;
+import com.ewaves.repository.UserRepository;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	@Override
-	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	/*@Autowired
+	@Autowired
 	public UserRepository userRepository;
 
 	@Autowired
@@ -25,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException {
-		User user = null;
+		LoginDetails user = null;
 
 		try {
 			user = userRepository.findByUsername(userName);
@@ -42,12 +47,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 	}
 
 	@SuppressWarnings("unchecked")
-	private final static class UserRepositoryUserDetails extends User implements
+	private final static class UserRepositoryUserDetails extends LoginDetails  implements
 			UserDetails {
 
 		private static final long serialVersionUID = 1L;
 
-		private UserRepositoryUserDetails(User user) {
+		private UserRepositoryUserDetails(LoginDetails user) {
 			super(user);
 		}
 
@@ -85,6 +90,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 			return true;
 		}
 
-	}*/
+	}
 	
 }

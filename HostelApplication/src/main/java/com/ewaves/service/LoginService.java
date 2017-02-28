@@ -1,6 +1,7 @@
-package com.ewaves.controller;
+package com.ewaves.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ewaves.domain.ResponseVO;
@@ -13,6 +14,8 @@ public class LoginService {
 
 	@Autowired
 	private LoginRepository loginRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public ResponseVO loginValidate(LoginDetails requestVO) {
 
@@ -24,9 +27,13 @@ public class LoginService {
 		}
 
 		System.out.println(dbUser.toString());
+
 		ResponseVO responseVO = HttpStatusCode.FOUND.getResponseVO("SUCCESS");
+		dbUser.setPassword(passwordEncoder.encode(dbUser.getPassword()));
 		responseVO.setResponseObjects(dbUser);
 		return responseVO;
 	}
+
+	
 
 }
