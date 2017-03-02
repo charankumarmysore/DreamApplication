@@ -3,11 +3,13 @@ package com.ewaves.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.ewaves.converter.LocalDateConverter;
 import com.ewaves.converter.LocalDateDeserializer;
@@ -28,6 +30,8 @@ public class StudentRequest implements Serializable {
 	private String noOfBeds;
 	private LocalDateTime insertedOn;
 	private LocalDateTime UpdatedOn;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private HostelDetails hostelDetails;
 
 	public Integer getId() {
 		return id;
@@ -91,10 +95,19 @@ public class StudentRequest implements Serializable {
 		UpdatedOn = updatedOn;
 	}
 
+	public HostelDetails getHostelDetails() {
+		return hostelDetails;
+	}
+
+	public void setHostelDetails(HostelDetails hostelDetails) {
+		this.hostelDetails = hostelDetails;
+	}
+
 	@Override
 	public String toString() {
-		return "UserRequest [id=" + id + ", name=" + name + ", email=" + email + ", sharingPerference=" + sharingPerference
-				+ ", noOfBeds=" + noOfBeds + ", insertedOn=" + insertedOn + ", UpdatedOn=" + UpdatedOn + "]";
+		return "StudentRequest [id=" + id + ", name=" + name + ", email=" + email + ", sharingPerference="
+				+ sharingPerference + ", noOfBeds=" + noOfBeds + ", insertedOn=" + insertedOn + ", UpdatedOn="
+				+ UpdatedOn + ", hostelDetails=" + hostelDetails + "]";
 	}
 
 }

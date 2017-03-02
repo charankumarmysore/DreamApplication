@@ -18,12 +18,13 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.ewaves.domain.PasswordDto;
 import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.LoginDetails;
+import com.ewaves.entities.Student;
 import com.ewaves.security.PasswordRestService;
 import com.ewaves.service.EmailService;
 import com.ewaves.service.LoginService;
 
 @RestController
-@RequestMapping(value = "/login")
+// @RequestMapping(value = "/login")
 public class LoginController {
 
 	@Autowired
@@ -34,7 +35,7 @@ public class LoginController {
 	@Autowired
 	private PasswordRestService passwordRestService;
 
-	@RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody ResponseVO userRequest(@RequestBody LoginDetails requestVO) {
 		System.out.println("In usercontroller : \n " + requestVO.toString());
 
@@ -78,12 +79,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/savePassword", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseVO savePassword(final Locale locale, PasswordDto passwordDto) {
-System.out.println("123");
-		final LoginDetails loginDetils = (LoginDetails) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
-		System.out.println("jkjkjkjkj");
+	public @ResponseBody ResponseVO savePassword(@RequestBody PasswordDto passwordDto) {
+		System.out.println("123");
+		final Student loginDetils = (Student) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("jkjkjkjkj" + passwordDto.getNewPassword());
 		passwordRestService.changeUserPassword(loginDetils, passwordDto.getNewPassword());
 		// return new
 		// GenericResponse(messages.getMessage("message.resetPasswordSuc", null,

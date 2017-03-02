@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.ewaves.config.CustomUserDetailsService;
+
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -36,34 +38,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 
 	@Override
-	public void configure(final WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**");
-		/*web.ignoring().antMatchers(HttpMethod.GET, "/views/**");
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(HttpMethod.GET, "/views/**");
 		web.ignoring().antMatchers(HttpMethod.GET, "/#/login");
-		web.ignoring().antMatchers(HttpMethod.GET, "/#/login/*");
-		web.ignoring().antMatchers(HttpMethod.GET, "/forgotPassword*");
-		web.ignoring().antMatchers(HttpMethod.GET, "/changepassword*");
-		web.ignoring().antMatchers(HttpMethod.POST, "/contactUs/");*/
+		web.ignoring().antMatchers(HttpMethod.GET, "/forgotPassword/*");
+		web.ignoring().antMatchers(HttpMethod.GET, "/changepassword/*");
+		web.ignoring().antMatchers(HttpMethod.POST, "/contactUs/");
 	}
 
 	@Override
-	protected void configure(final HttpSecurity http) throws Exception {
-		// @formatter:off
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/views/**", "/login*","/login/*", "/forgotPassword*",
-						"/changepassword*")
-				.permitAll().antMatchers("/invalidSession*").anonymous()
-				.antMatchers("/user/updatePassword*", "/user/savePassword*", "/updatePassword*")
-				.hasAuthority("CHANGE_PASSWORD_PRIVILEGE").anyRequest().hasAuthority("READ_PRIVILEGE").and().formLogin()
-				.loginPage("/login").defaultSuccessUrl("/homepage.html").failureUrl("/login?error=true")
+	protected void configure(HttpSecurity http) throws Exception {
 
-				.permitAll().and().sessionManagement().invalidSessionUrl("/invalidSession.html").maximumSessions(1);
 		http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.GET, "/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/**").permitAll().antMatchers(HttpMethod.PUT, "/**").permitAll()
 				.antMatchers(HttpMethod.DELETE, "/**").permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				.and().csrf().disable();
+		http.authorizeRequests().antMatchers("/savePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE");
 		http.headers().frameOptions().disable();
-		// @formatter:on
 	}
 
 	@Override
@@ -71,8 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(customUserDetailsService);
 	}
 
-	
-		@Override
+	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();

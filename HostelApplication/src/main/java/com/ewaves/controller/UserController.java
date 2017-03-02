@@ -12,13 +12,12 @@ import com.ewaves.entities.StudentRequest;
 import com.ewaves.service.UserService;
 
 @RestController
-@RequestMapping(value = "/user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/userRequest", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/userRequest", method = RequestMethod.POST)
 	public @ResponseBody ResponseVO userRequest(@RequestBody StudentRequest userRequest) {
 		System.out.println("In usercontroller : \n " + userRequest.toString());
 

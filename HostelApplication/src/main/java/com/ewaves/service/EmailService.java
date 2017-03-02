@@ -98,15 +98,7 @@ public class EmailService {
 
 	private final MimeMessage constructResetTokenEmail(final String contextPath, final Locale locale,
 			final String token, final Student user) {
-		// final String url = contextPath + "/old/user/changePassword?id=" +
-		// user.getId() + "&token=" + token;
-		// final String message1 = messages.getMessage("message.resetPassword",
-		// null, locale);
-		// final SimpleMailMessage email = new SimpleMailMessage();
-		// email.setTo(user.getEmail());
-		// email.setSubject("Reset Password");
-		// email.setText(message1 + " \r\n" + url);
-		/// email.setFrom(env.getProperty("support.email"));
+	
 		Session session = getEmailSession();
 		MimeMessage message = new MimeMessage(session);
 		try {
@@ -114,7 +106,7 @@ public class EmailService {
 
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
 
-			final String url = contextPath + "/login/changepassword?id=" + user.getId() + "&token=" + token;
+			final String url = contextPath + "/changepassword?id=" + user.getId() + "&token=" + token;
 			message.setSubject("Welcome to Cin-Cin Admin Panel", "UTF-8");
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
 			String emailContentType = "text/html" + "; charset=UTF-8";

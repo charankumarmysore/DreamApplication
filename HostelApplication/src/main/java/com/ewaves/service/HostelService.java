@@ -1,5 +1,7 @@
 package com.ewaves.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,69 @@ public class HostelService {
 
 		return HttpStatusCode.CREATED.getResponseVO("SUCCESS");
 
+	}
+
+	public ResponseVO getAllHostels() {
+		ResponseVO responseVO = new ResponseVO();
+		List<HostelDetails> list = (List<HostelDetails>) hostelRepossitory.findAll();
+		for (HostelDetails hostelDetails : list) {
+			if (hostelDetails.getIsEnable() == true) {
+
+				responseVO = HttpStatusCode.FOUND.getResponseVO("SUCCESS");
+				responseVO.setResponseObjects(list);
+			} else {
+				responseVO = HttpStatusCode.NO_CONTENT.getResponseVO("No Hostel found");
+			}
+		}
+
+		return responseVO;
+	}
+
+	/*
+	 * public ResponseVO getAllHostels(String city, String state) { if
+	 * (!(city.isEmpty()) && state.isEmpty()) {
+	 * 
+	 * return HttpStatusCode.NON_AUTHORITATIVE_INFORMATION.
+	 * getResponseVO("city or state should not be empty"); } List<HostelDetails>
+	 * hostelDetailsList = hostelRepossitory.findByCityAndState(city, state);
+	 * 
+	 * // HostelDetails cityStateList = hostelDetailsList.get(); if
+	 * (hostelDetailsList != null) {
+	 * 
+	 * } ResponseVO responseVO = new ResponseVO(); responseVO =
+	 * HttpStatusCode.FOUND.getResponseVO("SUCCESS");
+	 * responseVO.setResponseObjects(hostelDetailsList);
+	 * 
+	 * return responseVO; }
+	 */
+
+	public ResponseVO getAllHostels1(String city, String state) {
+		ResponseVO responseVO = new ResponseVO();
+		if (state.isEmpty() && city.isEmpty()) {
+			return HttpStatusCode.NON_AUTHORITATIVE_INFORMATION.getResponseVO("city or state should not be empty");
+		}
+		if (state.isEmpty()) {
+			List<HostelDetails> hostelDetailsList = hostelRepossitory.findByCity(city);
+			responseVO = HttpStatusCode.FOUND.getResponseVO("city details");
+			responseVO.setResponseObjects(hostelDetailsList);
+			return responseVO;
+		} else if (city.isEmpty()) {
+			List<HostelDetails> hostelDetailsList = hostelRepossitory.findByState(state);
+			responseVO = HttpStatusCode.FOUND.getResponseVO("state details");
+			responseVO.setResponseObjects(hostelDetailsList);
+			return responseVO;
+		}
+		List<HostelDetails> hostelDetailsList = hostelRepossitory.findByCityAndState(city, state);
+
+		// HostelDetails cityStateList = hostelDetailsList.get();
+		if (hostelDetailsList != null) {
+			return HttpStatusCode.NON_AUTHORITATIVE_INFORMATION.getResponseVO("city or state should not be empty");
+		}
+
+		responseVO = HttpStatusCode.FOUND.getResponseVO("SUCCESS");
+		responseVO.setResponseObjects(hostelDetailsList);
+
+		return responseVO;
 	}
 
 }

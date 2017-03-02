@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ewaves.domain.HostelCityStateVO;
 import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.HostelDetails;
 import com.ewaves.service.HostelService;
@@ -23,6 +24,26 @@ public class HostelController {
 		System.out.println("In usercontroller : \n " + hostelDeails.toString());
 
 		ResponseVO responseVO = hostelService.hostelRequest(hostelDeails);
+
+		return responseVO;
+
+	}
+
+	@RequestMapping(value = "/getAllHostels", method = RequestMethod.GET)
+	public @ResponseBody ResponseVO getAllHostels() {
+
+		ResponseVO responseVO = hostelService.getAllHostels();
+
+		return responseVO;
+
+	}
+
+	@RequestMapping(value = "/getAllCityAndState", method = RequestMethod.POST)
+	public @ResponseBody ResponseVO getHostelDetalsByStateAndCity(@RequestBody HostelCityStateVO requestVO) {
+		
+		
+		
+		ResponseVO  responseVO = hostelService.getAllHostels1(requestVO.getCity(), requestVO.getState());
 
 		return responseVO;
 

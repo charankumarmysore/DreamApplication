@@ -13,12 +13,12 @@ import com.ewaves.entities.Student;
 import com.ewaves.service.StudentService;
 
 @RestController
-@RequestMapping(value = "/student")
+
 public class StudentController {
 	@Autowired
 	StudentService studentService;
 
-	@RequestMapping(value = "/studentregistration", method = RequestMethod.POST)
+	@RequestMapping(value = "/studentregistration/", method = RequestMethod.POST)
 	public ResponseVO studentRegistration(@RequestBody Student employee, HttpServletRequest request) {
 		final String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort()
 				+ request.getContextPath();

@@ -12,7 +12,7 @@ import com.ewaves.entities.Role;
 import com.ewaves.service.RoleService;
 
 @RestController
-@RequestMapping(value = "/role")
+
 public class RoleController {
 
 	@Autowired

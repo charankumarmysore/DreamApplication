@@ -50,14 +50,27 @@ public class PasswordRestService {
 		final Authentication auth = new UsernamePasswordAuthenticationToken(user, null,
 				Arrays.asList(new SimpleGrantedAuthority("CHANGE_PASSWORD_PRIVILEGE")));
 		SecurityContextHolder.getContext().setAuthentication(auth);
-	//	ResponseVO responseVO = HttpStatusCode.FOUND.getResponseVO("SUCCESS");
+		// ResponseVO responseVO =
+		// HttpStatusCode.FOUND.getResponseVO("SUCCESS");
 		return null;
 	}
 
 	public void changeUserPassword(final LoginDetails user, final String password) {
 		System.out.println("lkklklklk");
 		user.setPassword(passwordEncoder.encode(password));
-		loginRepository.save(user);
+
+	}
+
+	public void changeUserPassword(Student loginDetils, String newPassword) {
+		System.out.println("In  changeUserPassword " + loginDetils.getFirstName());
+
+		LoginDetails cc = loginDetils.getUser();
+
+		cc.setPassword(newPassword);
+		System.out.println(newPassword);
+
+		loginRepository.save(cc);
+
 	}
 
 }

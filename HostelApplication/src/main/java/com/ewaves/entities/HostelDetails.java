@@ -1,12 +1,14 @@
 package com.ewaves.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -23,8 +25,18 @@ public class HostelDetails implements Serializable {
 	private String emailId;
 	private String address1;
 	private String address2;
+	private String street;
+	private String landmark;
+	private String state;
+	private String city;
+	private String country;
+	private String pinCode;
+
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDeails", orphanRemoval = true)
 	private HostelFaculties facultiesList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
+	private List<StudentRequest> studentRequests;
+
 	private boolean isEnable;
 
 	public Integer getHostelId() {
@@ -99,19 +111,77 @@ public class HostelDetails implements Serializable {
 		this.facultiesList = facultiesList;
 	}
 
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getLandmark() {
+		return landmark;
+	}
+
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
+
 	public boolean getIsEnable() {
 		return isEnable;
 	}
 
-	public void setIsEnable(boolean isEnable) {
+	public void setEnable(boolean isEnable) {
 		this.isEnable = isEnable;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public List<StudentRequest> getStudentRequests() {
+		return studentRequests;
+	}
+
+	public void setStudentRequests(List<StudentRequest> studentRequests) {
+		this.studentRequests = studentRequests;
 	}
 
 	@Override
 	public String toString() {
-		return "HostelDeails [hostelId=" + hostelId + ", hostelName=" + hostelName + ", firstName=" + firstName
+		return "HostelDetails [hostelId=" + hostelId + ", hostelName=" + hostelName + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", emailId=" + emailId + ", address1="
-				+ address1 + ", address2=" + address2 + ", facultiesList=" + facultiesList + "]";
+				+ address1 + ", address2=" + address2 + ", street=" + street + ", landmark=" + landmark + ", state="
+				+ state + ", city=" + city + ", country=" + country + ", pinCode=" + pinCode + ", facultiesList="
+				+ facultiesList + ", studentRequests=" + studentRequests + ", isEnable=" + isEnable + "]";
 	}
 
 }
