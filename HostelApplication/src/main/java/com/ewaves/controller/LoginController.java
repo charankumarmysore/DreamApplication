@@ -56,7 +56,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/changepassword", method = RequestMethod.GET)
-	public RedirectView showChangePasswordPage(final Locale locale, final HttpServletRequest request, final Model model,
+	public RedirectView showChangePasswordPage(final Locale locale, final HttpServletRequest request,
 			@RequestParam("id") final long id, @RequestParam("token") final String token) {
 		System.out.println("In showChangePasswordPage -------->\n" + token);
 		final ResponseVO result = passwordRestService.validatePasswordResetToken(id, token);
@@ -64,16 +64,12 @@ public class LoginController {
 
 		if (result != null) {
 
-			/// model.addAttribute("message",
-			/// messages.getMessage("auth.message." + result, null, locale));
 			redirectView.setUrl("/login?lang=" + locale.getLanguage());
-			// return "redirect:/login?lang=" + locale.getLanguage();
+
 		}
 		final String redirectUrl = "http://" + request.getServerName() + ":" + request.getServerPort()
 				+ "/views/updatePassword.html?lang=" + locale.getLanguage();
-		// String redirectUrl = request.getScheme() +
-		// "/views/updatePassword.html?lang=" + locale.getLanguage();
-		// return "redirect:" + redirectUrl;
+
 		redirectView.setUrl(redirectUrl);
 		return redirectView;
 	}

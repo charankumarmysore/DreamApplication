@@ -1,5 +1,7 @@
 package com.ewaves.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,8 +10,10 @@ import com.ewaves.domain.ResponseVO;
 import com.ewaves.entities.LoginDetails;
 import com.ewaves.entities.Role;
 import com.ewaves.entities.Student;
+import com.ewaves.entities.StudentRequest;
 import com.ewaves.repository.RoleRepository;
 import com.ewaves.repository.StudentRepository;
+import com.ewaves.repository.StudentRequestRepository;
 import com.ewaves.repository.UserRepository;
 import com.ewaves.util.HttpStatusCode;
 
@@ -23,6 +27,8 @@ public class StudentService {
 	private StudentRepository studentRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private StudentRequestRepository studentRequestRepository;
 
 	/*
 	 * @Autowired private TokenRepository tokenRepository;
@@ -63,16 +69,19 @@ public class StudentService {
 
 	}
 
-	/*public VerificationToken getVerificationToken(final String VerificationToken) {
-		return tokenRepository.findByToken(VerificationToken);
-	}*/
+	/*
+	 * public VerificationToken getVerificationToken(final String
+	 * VerificationToken) { return
+	 * tokenRepository.findByToken(VerificationToken); }
+	 */
 
-	/*public VerificationToken generateNewVerificationToken(final String existingVerificationToken) {
-		VerificationToken vToken = tokenRepository.findByToken(existingVerificationToken);
-		vToken.updateToken(UUID.randomUUID().toString());
-		vToken = tokenRepository.save(vToken);
-		return vToken;
-	}*/
+	/*
+	 * public VerificationToken generateNewVerificationToken(final String
+	 * existingVerificationToken) { VerificationToken vToken =
+	 * tokenRepository.findByToken(existingVerificationToken);
+	 * vToken.updateToken(UUID.randomUUID().toString()); vToken =
+	 * tokenRepository.save(vToken); return vToken; }
+	 */
 
 	public Student findStudentByEmail(String userEmail) {
 
@@ -80,5 +89,16 @@ public class StudentService {
 
 	}
 
-	
+	public ResponseVO addUserRequest(StudentRequest userRequest) {
+		userRequest.setInsertedOn(LocalDateTime.now());
+		StudentRequest dbUserRequest = studentRequestRepository.save(userRequest);
+
+		if (dbUserRequest == null) {
+			return HttpStatusCode.NON_AUTHORITATIVE_INFORMATION.getResponseVO("FAILURE");
+
+		}
+		return HttpStatusCode.CREATED.getResponseVO("SUCCESS");
+
+	}
+
 }

@@ -22,29 +22,21 @@ public class HostelController {
 	@RequestMapping(value = "/hostelrequest", method = RequestMethod.POST)
 	public @ResponseBody ResponseVO hostelRequest(@RequestBody HostelDetails hostelDeails) {
 		System.out.println("In usercontroller : \n " + hostelDeails.toString());
-
 		ResponseVO responseVO = hostelService.hostelRequest(hostelDeails);
-
 		return responseVO;
 
 	}
 
 	@RequestMapping(value = "/getAllHostels", method = RequestMethod.GET)
 	public @ResponseBody ResponseVO getAllHostels() {
-
 		ResponseVO responseVO = hostelService.getAllHostels();
-
 		return responseVO;
 
 	}
 
 	@RequestMapping(value = "/getAllCityAndState", method = RequestMethod.POST)
 	public @ResponseBody ResponseVO getHostelDetalsByStateAndCity(@RequestBody HostelCityStateVO requestVO) {
-		
-		
-		
-		ResponseVO  responseVO = hostelService.getAllHostels1(requestVO.getCity(), requestVO.getState());
-
+		ResponseVO responseVO = hostelService.getAllHostels1(requestVO.getCity(), requestVO.getState());
 		return responseVO;
 
 	}

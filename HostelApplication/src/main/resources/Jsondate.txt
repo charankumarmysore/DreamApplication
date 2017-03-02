@@ -46,5 +46,14 @@ http://localhost:9002/student/studentregistration
    }
 }
 ==============================================
+http://localhost:9002/user/userRequest
+{
 
-
+"name":"cc",
+"email":"cc",
+"sharingPerference":"4",
+"noOfBeds":"2",
+"hostelDetails":{
+"hostelId":"1"
+}
+}

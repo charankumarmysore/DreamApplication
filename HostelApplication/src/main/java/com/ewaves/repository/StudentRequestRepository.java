@@ -10,6 +10,6 @@ import com.ewaves.entities.StudentRequest;
 
 @Repository
 @Transactional
-public interface UserRequestRepository extends CrudRepository<StudentRequest, Long>, JpaRepository<StudentRequest, Long> {
+public interface StudentRequestRepository extends CrudRepository<StudentRequest, Long>, JpaRepository<StudentRequest, Long> {
 
 }

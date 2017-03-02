@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class HostelDetails implements Serializable {
@@ -34,8 +37,12 @@ public class HostelDetails implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDeails", orphanRemoval = true)
 	private HostelFaculties facultiesList;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
 	private List<StudentRequest> studentRequests;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
+	private RoomDetails roomDetails;
 
 	private boolean isEnable;
 
@@ -173,6 +180,14 @@ public class HostelDetails implements Serializable {
 
 	public void setStudentRequests(List<StudentRequest> studentRequests) {
 		this.studentRequests = studentRequests;
+	}
+
+	public RoomDetails getRoomDetails() {
+		return roomDetails;
+	}
+
+	public void setRoomDetails(RoomDetails roomDetails) {
+		this.roomDetails = roomDetails;
 	}
 
 	@Override

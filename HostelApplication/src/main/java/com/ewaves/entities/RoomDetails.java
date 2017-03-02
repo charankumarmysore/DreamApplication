@@ -12,11 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.ewaves.converter.LocalDateConverter;
 import com.ewaves.converter.LocalDateDeserializer;
 import com.ewaves.converter.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -35,6 +38,10 @@ public class RoomDetails implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomDetails", orphanRemoval = true)
 	private List<SharingDetails> sharingType;
+
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private HostelDetails hostelDetails;
 
 	private LocalDate insertedOn;
 	private LocalDate UpdatedOn;
@@ -104,6 +111,14 @@ public class RoomDetails implements Serializable {
 
 	public void setUpdatedOn(LocalDate updatedOn) {
 		UpdatedOn = LocalDate.now();
+	}
+
+	public HostelDetails getHostelDetails() {
+		return hostelDetails;
+	}
+
+	public void setHostelDetails(HostelDetails hostelDetails) {
+		this.hostelDetails = hostelDetails;
 	}
 
 }
