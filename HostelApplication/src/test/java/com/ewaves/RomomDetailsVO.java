@@ -15,7 +15,7 @@ public class RomomDetailsVO {
 
 		RoomDetailsVO detailsVO = new RoomDetailsVO();
 		HostelDetails hostelDetails = new HostelDetails();
-		hostelDetails.setHostelId(1);
+		hostelDetails.setHostelId(1L);
 		List<SharingDetails> sharingDetailsList = new ArrayList<>();
 		SharingDetails sharingDetails = new SharingDetails();
 		sharingDetails.setId(1);

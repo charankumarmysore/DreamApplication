@@ -1,7 +1,7 @@
 package com.ewaves.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Convert;
@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import com.ewaves.converter.LocalDateConverter;
 import com.ewaves.converter.LocalDateDeserializer;
 import com.ewaves.converter.LocalDateSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -29,9 +28,8 @@ public class StudentRequest implements Serializable {
 	private String email;
 	private String sharingPerference;
 	private String noOfBeds;
-	private LocalDateTime insertedOn;
-	private LocalDateTime UpdatedOn;
-	@JsonIgnore
+	private Date insertedOn;
+	private Date UpdatedOn;
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private HostelDetails hostelDetails;
 
@@ -78,22 +76,22 @@ public class StudentRequest implements Serializable {
 	@Convert(converter = LocalDateConverter.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
-	public LocalDateTime getInsertedOn() {
+	public Date getInsertedOn() {
 		return insertedOn;
 	}
 
-	public void setInsertedOn(LocalDateTime insertedOn) {
+	public void setInsertedOn(Date insertedOn) {
 		this.insertedOn = insertedOn;
 	}
 
 	@Convert(converter = LocalDateConverter.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
-	public LocalDateTime getUpdatedOn() {
+	public Date getUpdatedOn() {
 		return UpdatedOn;
 	}
 
-	public void setUpdatedOn(LocalDateTime updatedOn) {
+	public void setUpdatedOn(Date updatedOn) {
 		UpdatedOn = updatedOn;
 	}
 

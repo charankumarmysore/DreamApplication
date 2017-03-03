@@ -3,6 +3,10 @@ package com.ewaves.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ public class HostelService {
 
 	@Autowired
 	private HostelRepository hostelRepossitory;
+	@Autowired
+	private EmailService emailSerice;
 
 	@Autowired
 	private SharingDetailsRepository sharingDetailsRepository;
@@ -33,8 +39,14 @@ public class HostelService {
 		if (dbphoneNumber != null) {
 			return HttpStatusCode.ALREADY_PHONENUM_EXISTS.getResponseVO("FAILURE");
 		}
-		hostelRepossitory.save(hostelDeails);
+		HostelDetails details = hostelRepossitory.save(hostelDeails);
+		try {
+			MimeMessage message = emailSerice.sendRequestMail(details);
 
+			Transport.send(message);
+		} catch (MessagingException e) {
+			return HttpStatusCode.ALREADY_PHONENUM_EXISTS.getResponseVO("FAILURE");
+		}
 		return HttpStatusCode.CREATED.getResponseVO("SUCCESS");
 
 	}

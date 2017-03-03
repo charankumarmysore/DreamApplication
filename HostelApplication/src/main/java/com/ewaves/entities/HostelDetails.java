@@ -18,7 +18,7 @@ public class HostelDetails implements Serializable {
 	private static final long serialVersionUID = 7749423133637138708L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer hostelId;
+	private Long hostelId;
 	private String hostelName;
 	private String firstName;
 	private String lastName;
@@ -43,17 +43,17 @@ public class HostelDetails implements Serializable {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
 	private List<StudentRequest> studentRequests;
-	@JsonIgnore
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
 	private List<SharingDetails> sharingDetails;
 
 	private boolean isEnable;
 
-	public Integer getHostelId() {
+	public Long getHostelId() {
 		return hostelId;
 	}
 
-	public void setHostelId(Integer hostelId) {
+	public void setHostelId(Long hostelId) {
 		this.hostelId = hostelId;
 	}
 
@@ -239,6 +239,17 @@ public class HostelDetails implements Serializable {
 
 	public void setSharingDetails(List<SharingDetails> sharingDetails) {
 		this.sharingDetails = sharingDetails;
+	}
+
+	@Override
+	public String toString() {
+		return "HostelDetails [hostelId=" + hostelId + ", hostelName=" + hostelName + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", emailId=" + emailId + ", address1="
+				+ address1 + ", address2=" + address2 + ", street=" + street + ", landmark=" + landmark + ", state="
+				+ state + ", city=" + city + ", country=" + country + ", pinCode=" + pinCode + ", hostelFor="
+				+ hostelFor + ", tv=" + tv + ", wifi=" + wifi + ", ac=" + ac + ", nonVegetarian=" + nonVegetarian
+				+ ", washingMachine=" + washingMachine + ", hotWater=" + hotWater + ", studentRequests="
+				+ studentRequests + ", sharingDetails=" + sharingDetails + ", isEnable=" + isEnable + "]";
 	}
 
 }

@@ -1,5 +1,10 @@
 package com.ewaves.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ewaves.entities.StudentRequest;
+import com.ewaves.service.EmailService;
+
 /*@Component
 public class SendSms {
 
@@ -20,3 +25,10 @@ public class SendSms {
 	}*/
 
 //}
+
+public class SendSms {
+	
+	
+	
+}
+

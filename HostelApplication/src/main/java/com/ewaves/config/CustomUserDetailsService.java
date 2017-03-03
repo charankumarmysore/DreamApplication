@@ -12,43 +12,38 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ewaves.entities.LoginDetails;
-import com.ewaves.repository.UserRepository;
+import com.ewaves.repository.LoginRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	
+	@Autowired
+	public LoginRepository loginRepository;
 
 	@Autowired
-	public UserRepository userRepository;
-
-	@Autowired
-	public CustomUserDetailsService(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public CustomUserDetailsService(LoginRepository loginRepository) {
+		this.loginRepository = loginRepository;
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String userName)
-			throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		LoginDetails user = null;
 
 		try {
-			user = userRepository.findByUsername(userName);
+			user = loginRepository.findByUsername(userName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (user == null) {
-			throw new UsernameNotFoundException(String.format(
-					"User %s does not exist!", userName));
+			throw new UsernameNotFoundException(String.format("User %s does not exist!", userName));
 		}
 
 		return new UserRepositoryUserDetails(user);
 	}
 
 	@SuppressWarnings("unchecked")
-	private final static class UserRepositoryUserDetails extends LoginDetails  implements
-			UserDetails {
+	private final static class UserRepositoryUserDetails extends LoginDetails implements UserDetails {
 
 		private static final long serialVersionUID = 1L;
 
@@ -69,7 +64,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			});
 			return roles;
 		}
-		
+
 		@Override
 		public boolean isAccountNonExpired() {
 			return true;
@@ -91,5 +86,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 
 	}
-	
+
 }

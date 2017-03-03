@@ -11,4 +11,6 @@ public interface LoginRepository extends CrudRepository<LoginDetails, Long>, Jpa
 
 	LoginDetails findByUsernameAndPassword(String username, String password);
 
+	LoginDetails findByUsername(String username);
+
 }
