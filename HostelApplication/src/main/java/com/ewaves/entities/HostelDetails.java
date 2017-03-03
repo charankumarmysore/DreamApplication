@@ -32,7 +32,7 @@ public class HostelDetails implements Serializable {
 	private String city;
 	private String country;
 	private String pinCode;
-	private String gender;
+	private String hostelFor;
 	private boolean tv;
 	private boolean wifi;
 	private boolean ac;
@@ -189,12 +189,12 @@ public class HostelDetails implements Serializable {
 		return wifi;
 	}
 
-	public String getGender() {
-		return gender;
+	public String getHostelFor() {
+		return hostelFor;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setHostelFor(String hostelFor) {
+		this.hostelFor = hostelFor;
 	}
 
 	public void setWifi(boolean wifi) {
