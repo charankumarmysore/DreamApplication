@@ -1,21 +1,3 @@
-{
-   "hostelName":"sairam",
-   "firstName":"sai",
-   "lastName":"ram",
-   "phoneNumber":"13456788",
-   "emailId":"sairam@gmail.com",
-   "address1":"nellore",
-   "address2":"dddd",
-   "facultiesList":{
-      "tv":true,
-      "wifi":true,
-      "ac":false,
-      "nonVegetarian":false,
-      "washingMachine":false,
-      "hotWater":false
-   }
-}
-
 ==============================================
 http://localhost:9002/role/addRole
 
