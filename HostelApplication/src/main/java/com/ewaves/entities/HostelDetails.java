@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,15 +32,20 @@ public class HostelDetails implements Serializable {
 	private String city;
 	private String country;
 	private String pinCode;
+	private String gender;
+	private boolean tv;
+	private boolean wifi;
+	private boolean ac;
+	private boolean nonVegetarian;
+	private boolean washingMachine;
+	private boolean hotWater;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDeails", orphanRemoval = true)
-	private HostelFaculties facultiesList;
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
 	private List<StudentRequest> studentRequests;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
-	private RoomDetails roomDetails;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hostelDetails", orphanRemoval = true)
+	private List<SharingDetails> sharingDetails;
 
 	private boolean isEnable;
 
@@ -110,14 +113,6 @@ public class HostelDetails implements Serializable {
 		this.address2 = address2;
 	}
 
-	public HostelFaculties getFacultiesList() {
-		return facultiesList;
-	}
-
-	public void setFacultiesList(HostelFaculties facultiesList) {
-		this.facultiesList = facultiesList;
-	}
-
 	public String getStreet() {
 		return street;
 	}
@@ -182,21 +177,68 @@ public class HostelDetails implements Serializable {
 		this.studentRequests = studentRequests;
 	}
 
-	public RoomDetails getRoomDetails() {
-		return roomDetails;
+	public boolean isTv() {
+		return tv;
 	}
 
-	public void setRoomDetails(RoomDetails roomDetails) {
-		this.roomDetails = roomDetails;
+	public void setTv(boolean tv) {
+		this.tv = tv;
 	}
 
-	@Override
-	public String toString() {
-		return "HostelDetails [hostelId=" + hostelId + ", hostelName=" + hostelName + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", emailId=" + emailId + ", address1="
-				+ address1 + ", address2=" + address2 + ", street=" + street + ", landmark=" + landmark + ", state="
-				+ state + ", city=" + city + ", country=" + country + ", pinCode=" + pinCode + ", facultiesList="
-				+ facultiesList + ", studentRequests=" + studentRequests + ", isEnable=" + isEnable + "]";
+	public boolean isWifi() {
+		return wifi;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setWifi(boolean wifi) {
+		this.wifi = wifi;
+	}
+
+	public boolean isAc() {
+		return ac;
+	}
+
+	public void setAc(boolean ac) {
+		this.ac = ac;
+	}
+
+	public boolean isNonVegetarian() {
+		return nonVegetarian;
+	}
+
+	public void setNonVegetarian(boolean nonVegetarian) {
+		this.nonVegetarian = nonVegetarian;
+	}
+
+	public boolean isWashingMachine() {
+		return washingMachine;
+	}
+
+	public void setWashingMachine(boolean washingMachine) {
+		this.washingMachine = washingMachine;
+	}
+
+	public boolean isHotWater() {
+		return hotWater;
+	}
+
+	public void setHotWater(boolean hotWater) {
+		this.hotWater = hotWater;
+	}
+
+	public List<SharingDetails> getSharingDetails() {
+		return sharingDetails;
+	}
+
+	public void setSharingDetails(List<SharingDetails> sharingDetails) {
+		this.sharingDetails = sharingDetails;
 	}
 
 }

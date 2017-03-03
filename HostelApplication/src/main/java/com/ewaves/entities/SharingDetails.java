@@ -25,10 +25,11 @@ public class SharingDetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String sharingType;
-	private String noOfPersonAvailability;
+	private Integer sharingType;
+	private Integer noOfPersonAvailability;
+	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	private RoomDetails roomDetails;
+	private HostelDetails hostelDetails;
 
 	private LocalDateTime insertedOn;
 	private LocalDateTime UpdatedOn;
@@ -41,27 +42,27 @@ public class SharingDetails implements Serializable {
 		this.id = id;
 	}
 
-	public String getSharingType() {
+	public Integer getSharingType() {
 		return sharingType;
 	}
 
-	public void setSharingType(String sharingType) {
+	public void setSharingType(Integer sharingType) {
 		this.sharingType = sharingType;
 	}
 
-	public RoomDetails getRoomDetails() {
-		return roomDetails;
+	public HostelDetails getHostelDetails() {
+		return hostelDetails;
 	}
 
-	public void setRoomDetails(RoomDetails roomDetails) {
-		this.roomDetails = roomDetails;
+	public void setHostelDetails(HostelDetails hostelDetails) {
+		this.hostelDetails = hostelDetails;
 	}
 
-	public String getNoOfPersonAvailability() {
+	public Integer getNoOfPersonAvailability() {
 		return noOfPersonAvailability;
 	}
 
-	public void setNoOfPersonAvailability(String noOfPersonAvailability) {
+	public void setNoOfPersonAvailability(Integer noOfPersonAvailability) {
 		this.noOfPersonAvailability = noOfPersonAvailability;
 	}
 
@@ -85,6 +86,13 @@ public class SharingDetails implements Serializable {
 
 	public void setUpdatedOn(LocalDateTime updatedOn) {
 		UpdatedOn = updatedOn;
+	}
+
+	@Override
+	public String toString() {
+		return "SharingDetails [id=" + id + ", sharingType=" + sharingType + ", noOfPersonAvailability="
+				+ noOfPersonAvailability + ", hostelDetails=" + hostelDetails + ", insertedOn=" + insertedOn
+				+ ", UpdatedOn=" + UpdatedOn + "]";
 	}
 
 }

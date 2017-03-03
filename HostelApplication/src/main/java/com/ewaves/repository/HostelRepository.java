@@ -17,7 +17,7 @@ public interface HostelRepository
 	HostelDetails findByEmail(@Param(value = "emailId") String emailId);
 
 	@Query("SELECT e FROM HostelDetails e where e.phoneNumber=(:phoneNumber)")
-	HostelDetails findByPhone(String phoneNumber);
+	HostelDetails findByPhone(@Param(value = "phoneNumber") String phoneNumber);
 
 	List<HostelDetails> findByCityAndState(String city, String state);
 

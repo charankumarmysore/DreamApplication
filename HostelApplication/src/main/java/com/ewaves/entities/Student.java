@@ -24,7 +24,7 @@ public class Student implements java.io.Serializable {
 	private Long id;
 
 	private String firstName;
-
+	private String lastName;
 	private String phone;
 
 	private String email;
@@ -34,7 +34,6 @@ public class Student implements java.io.Serializable {
 	private Date insertedOn;
 
 	private Date modifiedOn;
-	private String lastName;
 
 	private LoginDetails user;
 

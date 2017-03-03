@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import com.ewaves.converter.LocalDateConverter;
 import com.ewaves.converter.LocalDateDeserializer;
 import com.ewaves.converter.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -30,6 +31,7 @@ public class StudentRequest implements Serializable {
 	private String noOfBeds;
 	private LocalDateTime insertedOn;
 	private LocalDateTime UpdatedOn;
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private HostelDetails hostelDetails;
 

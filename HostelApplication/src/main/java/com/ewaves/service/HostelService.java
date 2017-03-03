@@ -1,12 +1,15 @@
 package com.ewaves.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ewaves.domain.ResponseVO;
+import com.ewaves.domain.RoomDetailsVO;
 import com.ewaves.entities.HostelDetails;
+import com.ewaves.entities.SharingDetails;
 import com.ewaves.repository.HostelRepository;
 import com.ewaves.util.HttpStatusCode;
 
@@ -15,6 +18,9 @@ public class HostelService {
 
 	@Autowired
 	private HostelRepository hostelRepossitory;
+
+	@Autowired
+	private SharingDetailsRepository sharingDetailsRepository;
 
 	public ResponseVO hostelRequest(HostelDetails hostelDeails) {
 
@@ -94,6 +100,24 @@ public class HostelService {
 		responseVO.setResponseObjects(hostelDetailsList);
 
 		return responseVO;
+	}
+
+	public ResponseVO addRoom(RoomDetailsVO requestVO) {
+
+		List<SharingDetails> sharingDetailList = requestVO.getSharingDetails();
+
+		for (SharingDetails sharingDetails : sharingDetailList) {
+			if (sharingDetails.getSharingType().toString().isEmpty()
+					&& sharingDetails.getNoOfPersonAvailability().toString().isEmpty()) {
+				return HttpStatusCode.FOUND.getResponseVO("dfdfdf");
+			}
+			sharingDetails.setInsertedOn(LocalDateTime.now());
+			sharingDetailList.add(sharingDetails);
+		}
+
+		sharingDetailsRepository.save(sharingDetailList);
+
+		return HttpStatusCode.FOUND.getResponseVO("SUCCESS");
 	}
 
 }

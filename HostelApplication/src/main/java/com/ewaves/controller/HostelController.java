@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ewaves.domain.HostelCityStateVO;
 import com.ewaves.domain.ResponseVO;
+import com.ewaves.domain.RoomDetailsVO;
 import com.ewaves.entities.HostelDetails;
 import com.ewaves.service.HostelService;
 
@@ -37,6 +38,14 @@ public class HostelController {
 	@RequestMapping(value = "/getAllCityAndState", method = RequestMethod.POST)
 	public @ResponseBody ResponseVO getHostelDetalsByStateAndCity(@RequestBody HostelCityStateVO requestVO) {
 		ResponseVO responseVO = hostelService.getAllHostels1(requestVO.getCity(), requestVO.getState());
+		return responseVO;
+
+	}
+
+	@RequestMapping(value = "/addroom", method = RequestMethod.POST)
+	public @ResponseBody ResponseVO addRoom(@RequestBody RoomDetailsVO requestVO) {
+		System.out.println("In addRoom ---->" + requestVO);
+		 ResponseVO responseVO = hostelService.addRoom(requestVO);
 		return responseVO;
 
 	}
